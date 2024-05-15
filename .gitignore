@@ -1,0 +1,7 @@
+db/data.db
+nohup.out
+data/config_files/bot_tokens.json
+data/config_files/config.json
+.ruby-version
+.bundle
+config.yml

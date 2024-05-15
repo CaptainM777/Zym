@@ -1,0 +1,2 @@
+# Zym Bot: The Current Dragon Prince of Discord
+This is a bot created for the Dragon Prince Discord server (click [here](https://discord.gg/thedragonprince) to join). The [Geode](https://github.com/hecksalmonids/geode) library was used to give this project some better structure and a SQLite3 database to work with. Most of the code present here is from Geode; the files in app/main were written by me (with the exception of the readme).

@@ -1,0 +1,20 @@
+{
+    "server": "dragon prince",
+    "server_id": 841384715666849803,
+    "role_ids": {
+      "admin_role_id": 841387928127406120,
+      "mod_role_id": "841388219890663484",
+      "muted_role_id": "841431679121227807",
+      "birthday_role_id": "841507192615600129"
+    },
+    "channel_ids": {
+      "mod_log_id": "841491756414795816",
+      "cap_playground_id": "841490293890351134",
+      "bot_channel_id": "841442944510853120",
+      "storybook_id": "841442818299396127",
+      "birthday_channel_id": "841439181346963457",
+      "mod_chat_id": "841389399744053279",
+      "automod_log_id": "989353509528940624",
+      "join_leave_log_id": "841384716095062097"
+    }
+}

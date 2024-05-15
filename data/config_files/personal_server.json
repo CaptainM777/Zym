@@ -1,0 +1,18 @@
+{
+    "server": "personal",
+    "server_id": 650143161645006848,
+    "role_ids": {
+      "admin_role_id": 665696338536824848,
+      "mod_role_id": "665696287772901416",
+      "muted_role_id": "989270527057215508",
+      "birthday_role_id": "666860686755758081"
+    },
+    "channel_ids": {
+      "mod_log_id": "651969052155183128",
+      "storybook_id": "702643019979030538",
+      "birthday_channel_id": "705551230612668537",
+      "mod_chat_id": "697975217410277426",
+      "automod_log_id": "1005299957231792158",
+      "join_leave_log_id": "1005278545301475418"
+    }
+}

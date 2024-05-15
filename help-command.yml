@@ -1,0 +1,711 @@
+descriptions:
+  specific: "Use -help to get a list of commands available for your permission level."
+  master-list: >
+    Use `-help [command]` for more information on a command. When using `-help [command]`, the `[command]`
+    argument should be the *full* command name; command aliases are not accepted.
+
+footers:
+  specific: "Use -help to get a list of commands available for your permission level."
+  master-list: "Use -help [command] for more information on a command."
+
+# Assignable roles commands
+assignable-roles:
+  roles list:
+    mod_command?: false
+    # overview: "•`-roles list` [aliases: `-role list`] - Shows a list of roles you can assign yourself."
+    aliases: "`-role list`"
+    command_forms_and_arguments: |
+      `-roles list`
+      No arguments.
+    description: >
+      Shows a list of roles you can assign yourself. Each role has a list of commands you can use 
+      to assign it to yourself. Every role is also grouped under a category, and you can only have one role
+      from each category (except those listed under 'Pronouns' and 'No Category'). 
+
+
+# Moderation commands
+moderation:
+  warn:
+    mod_command?: true
+    # overview: •`-warn <user ID> <reason>` - Warns a user.
+    command_forms_and_arguments: |
+      `-warn <user ID> <reason>`
+      **User ID** - The user's ID
+      **Reason** - The reason for the warn
+    example_usage: "`-warn 260600155630338048 Spamming in #general`"
+    description: >
+      Warns a user. If their DM's are closed, it is suggested that a Mirror chat be opened up
+      with them to explain their warning.
+
+  mute:
+    mod_command?: true
+    # overview: •`-mute <user ID> <duration> <reason>` or `-mute <user ID> <reason>` - Mutes a user.
+    command_forms_and_arguments: |
+      __Indefinite Mute__
+      `-mute <user ID> <reason>`
+      **User ID** - The user's ID
+      **Reason** - The reason for the mute
+
+      __Definite Mute__
+      `-mute <user ID> <duration> <reason>`
+      **User ID** - The user's ID
+      **Duration** - The length of the mute. Has to be a minimum of 1 hour. Examples: 6d (6 days), 7m (7 minutes), 30s (30 seconds), 5h30m5s (5 hours, 30 minutes, and 5 seconds)
+      **Reason** - The reason for the mute
+    example_usage: |
+      `-mute 260600155630338048 Spamming in #general`
+      `-mute 260600155630338048 6h Trying to ping @everyone`
+    description: >
+      Mutes a user so they can't talk in any text channels or use voice channels. If the 
+      command is used without a specified duration, it will be an indefinite mute.
+
+
+      If the user's DM's are closed, they will still be muted. It is suggested, however, that a 
+      Mirror chat be opened up with them so that their mute can be explained. 
+
+
+      If the user leaves the server before finishing their mute, they will be given the muted role
+      when they come back. If their mute runs out before they rejoin the server, then they will not be
+      given the muted role once they rejoin.
+
+
+      The mute can be ended early by removing the muted role; an unmute will not get logged, however. It is strongly recommended that the 
+      `-unmute` command be used to unmute users.
+
+  unmute:
+    mod_command?: true
+    # overview: •`-unmute <user ID>` - Unmutes a user.
+    command_forms_and_arguments: |
+      `-unmute <user ID>`
+      **User ID** - The user's ID
+    example_usage: "`-unmute 260600155630338048`"
+    description: >
+      Unmutes a user.
+
+  ban:
+    mod_command?: true
+    # overview: •`-ban <user ID> <reason>` (use `-help ban` for all the forms of this command) - Bans a user.
+    command_forms_and_arguments: |
+      `-ban <user ID> <reason>`
+      **User ID** - The user's ID
+      **Reason** - The reason for the ban. Has to be 512 characters or less
+
+      `-ban <user ID> <days of messages to delete> <reason>`
+      **User ID** - The user's ID
+      **Days of Messages to Delete** - The number of days' worth of messages to delete. Has to be between 0-7. Defaults to 0
+      **Reason** - The reason for the ban. Has to be 512 characters or less
+
+    command_forms_and_arguments_(continued): |
+      `-ban <user ID> <duration> <reason>`
+        **User ID** - The user's ID
+        **Duration** - The length of the ban. Examples: 6d (6 days), 7m (7 minutes), 30s (30 seconds), 5h30m5s (5 hours, 30 minutes, and 5 seconds)
+        **Reason** - The reason for the ban. Has to be 512 characters or less
+
+        `-ban <user ID> <duration> <days of messages to delete> <reason>`
+        **User ID** - The user's ID
+        **Duration** - The length of the ban. Has to be a minimum of 1 day. Examples: 6d (6 days), 7m (7 minutes), 30s (30 seconds), 5h30m5s (5 hours, 30 minutes, and 5 seconds)
+        **Days of Messages to Delete** - The number of days' worth of messages to delete. Has to be between 0-7. Defaults to 0
+        **Reason** - The reason for the ban. Has to be 512 characters or less
+    example_usage: |
+      `-ban 260600155630338048 Spamming invite links in several channels`
+      `-ban 260600155630338048 5 Spamming invite links in several channels`
+      `-ban 260600155630338048 3d Spamming invite links in several channels`
+      `-ban 260600155630338048 3d 4 Spamming invite links in several channels`
+    description: >
+      Bans a user from the server. A link to the ban appeal server will be sent for both permanent and temporary bans.
+
+  unban:
+    mod_command?: true
+    # overview: •`-unban <user ID>` - Unbans a user.
+    command_forms_and_arguments: |
+      `-unban <user ID>`
+      **User ID** - The user's ID
+    example_usage: "`-unban 260600155630338048`"
+    description: >
+      Unbans a user from the server. An error will be thrown if the user isn't banned.
+
+  purge:
+    mod_command?: true
+    # overview: •`-purge <number between 2 and 100>` - Bulk-deletes the specified number of messages in the current channel.
+    command_forms_and_arguments: |
+      `-purge <amount to delete>`
+      **Amount to Delete** - The number of messages to delete. Has to be between 2 and 100 (inclusive)
+    example_usage: "`-purge 55`"
+    description: >
+      Deletes the specified number of messages from the current channel. An error will be thrown if some messages can't be deleted.
+
+  purge after:
+    mod_command?: true
+    # overview: •`-purge after <message ID>` - Bulk-deletes all the messages after the specified message that the ID refers to.
+    command_forms_and_arguments: |
+      `-purge after <message ID>`
+      **Message ID** - The message ID after which every message will be deleted. Can't be older than 2 weeks
+    example_usage: "`-purge after 1012905562071109712`"
+    description: >
+      Deletes all the messages after the specified message ID. An error will be thrown if some messages can't be deleted.
+
+  purge range: 
+    mod_command?: true
+    # overview: •`-purge range <first message ID in range> <last message ID in range>` - Bulk-deletes all the messages in the specified range.
+    command_forms_and_arguments: |
+      `-purge range <first message ID> <second message ID>`
+      **First Message ID** - First message ID in the range. Can't be older than 2 weeks
+      **Second Message ID** - Last message ID in the range. Can't be older than 2 weeks
+    example_usage: "`-purge range 1012912988354777108 1012913059678912532`"
+    description: >
+      Deletes all messages in the specified range. The first and last messages in the range are *not* deleted. If the arguments are given in the wrong order,
+      the command will fail. An error will be thrown if some messages can't be deleted.
+
+punishment-logs:
+  cases:
+    mod_command?: true
+    # overview: •`-cases <user ID>` - Pulls up the full punishment history of a user.
+    command_forms_and_arguments: |
+      `-cases <user ID>`
+      **User ID** - The user's ID
+    example_usage: "`-cases 260600155630338048`"
+    description: >
+      Shows a user's full punishment history. Each page (presented as an embed) displays 5 punishments each and the full history can be navigated by
+      using the controls at the bottom of the message. Those controls are:
+      
+
+      ⏮ - Goes to the first page
+
+      ◀ - Goes to the previous page
+
+      ⏹ - Stops navigation
+
+      ▶ - Goes to the next page
+
+      ⏭ - Goes to the last page
+
+
+      All controls will be disabled if the stop button is pressed or if navigation times out. The time out period is 3 minutes. Controls may also be disabled if you
+      are on a certain page. For example, if you are on the first page, the ⏮ and ◀ will be disabled.
+
+  editcase:
+    mod_command?: true
+    # overview: •`-editcase <case ID> <reason>` - Replaces the original case reason with a new one.
+    command_forms_and_arguments: |
+      `-editcase <case ID> <reason>`
+      **Case ID** - The case's ID
+      **Reason** - The case's new reason
+    example_usage: "`-editcase 43 Muted originally for spamming. Unmuted early for good behavior.`"
+    description: >
+      Replaces the original case reason with a new one. This command will only replace the *reason*; it does not affect any other details of the case, like the type
+      of punishment, the mute length (if applicable), etc.
+
+  deletecase:
+    mod_command?: true
+    # overview: "•`-deletecase <case ID>` [aliases: `-delcase`] - Deletes a case."
+    command_forms_and_arguments: |
+      `-deletecase <case ID>`
+      **Case ID** - The case's ID
+    example_usage: "`-deletecase 70`"
+    description: >
+      Deletes a case. This is permanent, so be sure about what you are doing before running this command!
+
+  logcase:
+    mod_command?: true
+    # overview: •`-logcase <user ID> <reason>` - Logs a case to a user's punishment history.
+    command_forms_and_arguments: |
+      `-logcase <user ID> <reason>`
+      **User ID** - The user's ID
+      **Reason** - The case reason
+    example_usage: |
+      `-logcase 260600155630338048 Warned in chat for spamming images`
+    description: > 
+      Logs a case to a user's punishment history. This command can be used in an event where moderation of a user has occurred without the usage of Zym moderation 
+      commands, like giving out a verbal warning. A DM will not be sent to the user if cases are logged in this manner.
+
+information:
+  userinfo:
+    mod_command?: true
+    # overview: "•`-userinfo <user ID>` [aliases: `-info`] - Shows detailed information about a user."
+    aliases: "`-info`"
+    command_forms_and_arguments: |
+      `-userinfo <user ID>`
+      **User ID** - The user's ID
+    example_usage: "`-userinfo 260600155630338048`"
+    description: > 
+      Shows the following information about a user: a link to their profile picture, the roles they have, their username, their nickname, whether they are a bot
+      account, whether they are online/idle/dnd/offline, their current status, whether they are boosting, when their account was created, when they joined the server,
+      and if they are muted, the mute reason.
+
+# Word filter commands
+word-filter:
+  bannedwords add:
+    mod_command?: true
+    # overview: "•`-bannedwords add <word or words>` [aliases: `-bw add`] - Adds a word or multiple words to the banned words list."
+    aliases: "`-bw add`"
+    command_forms_and_arguments: |
+      `-bannedwords add <words>`
+      **Words** - Words to add to the banned words list. A minimum of 1 has to be provided
+    example_usage: "`-bannedwords add zym`\n`-bannedwords add zym bait egg`"
+    description: >
+      Adds a word or multiple words to the banned word list. This command can be either be used on the server or in DM's 
+      (in case you don't want to type out the banned word(s) on the server).
+
+  bannedwords remove:
+    mod_command?: true
+    # overview: "•`-bannedwords remove <word or words>` [aliases: `-bannedwords delete`, `-bw remove`, `-bw delete`] - Removes a word or multiple words from the banned words list."
+    aliases: "`-bannedwords delete`, `-bw remove`, `-bw delete`"
+    command_forms_and_arguments: |
+      `-bannedwords remove <words>`
+      **Words** - Words to remove from the banned words list. A minimum of 1 has to be provided
+    example_usage: "`-bannedwords remove zym`\n`-bannedwords remove zym bait egg`"
+    description: >
+      Removes a word or multiple words from the banned words list. This command can be either be used on the server or in DM's 
+      (in case you don't want to type out the banned words on the server).
+  
+  bannedwords list:
+    mod_command?: false
+    # overview: "•`-bannedwords list` [aliases: `-bw list`] - Shows all the words currently in the banned words list."
+    aliases: "`-bw list`"
+    command_forms_and_arguments: |
+      `-bannedwords list`
+      No arguments.
+    description: >
+      Shows all the words currently in the banned words list. This list will be DM'd to you, as it may contain words that are very offensive and
+      improper for this server.
+
+
+      **Make sure you have DM's turned on for this server so that Zym bot can DM you the list.**
+
+  bannedwords clear:
+    mod_command?: true
+    # overview: "•-`bannedwords clear` [aliases: `-bw clear`] - Clears the banned words list."
+    aliases: "`-bw clear`"
+    command_forms_and_arguments: |
+      `-bannedwords clear`
+      No arguments.
+    description: >
+      Clears the banned words list. This command will prompt you to confirm your decision, as **this action is irreversible**.
+
+  dmmessage set:
+    mod_command?: true
+    # overview: "•`-dmmessage set <message>` [aliases: `-message set`, `-dm set`] - Sets the message that will be DM'd to the user upon message deletion."
+    aliases: "`-message set`, `-dm set`"
+    command_forms_and_arguments: |
+      `-dmmessage set <message>`
+      **Message** - The message that will be DM'd to the user
+    example_usage: "`-dmmessage set Your message has been deleted because it contained banned words`"
+    description: >
+      Sets the message to be DM'd to the user upon message deletion. This command requires a message to be provided when the command is invoked.
+
+  dmmessage get:
+    mod_command?: true
+    # overview: "•`-dmmessage get` [aliases: `-message get`, `-dm get`] - Gets the message that will be DM'd to the user upon message deletion."
+    aliases: "`-message get`, `-dm get`"
+    command_forms_and_arguments: |
+      `-dmmessage get`
+      No arguments.
+    description: >
+      Gets the message that will be DM'd to the user upon message deletion. 
+
+  dmmessage reset:
+    mod_command?: true
+    # overview: "•`-dmmessage reset` [aliases: `-message reset`, `-dm reset`] - Resets the message that will be DM'd to the user upon message deletion to its default setting."
+    aliases: "`-message reset`, `-dm reset`"
+    command_forms_and_arguments: |
+      `-dmmessage reset`
+      No arguments.
+    description: >
+      Resets the message that will be DM'd to the user upon message deletion to "Your message has been deleted because it contained a banned word".
+
+  ignoredchannels add:
+    mod_command?: true
+    # overview: "•`-ignoredchannels add <channels>` [aliases: `-ignore add`, `-ignored add`] - Blacklists channels for the word filter."
+    aliases: "`-ignore add`, `-ignored add`"
+    command_forms_and_arguments: |
+      `-ignoredchannels add <channels>`
+      **Channels** - Channels to blacklist. Accepts channel mentions and ID's. At least 1 channel has to be provided
+    example_usage: |
+      `-ignoredchannels add #general`
+      `-ignoredchannels add #general #memes`
+      `-ignoredchannels add 687076782687387649`
+      `-ignoredchannels add 687076782687387649 675107652426137617`
+    description: >
+      Blacklists channels for the word filter. The word filter will not work in these channels.
+
+  ignoredchannels remove:
+    mod_command?: true
+    # overview: "•`-ignoredchannels remove <channels>` [aliases: `-ignoredchannels delete`, `-ignore remove`, `-ignored remove`, `-ignore delete`, `-ignored delete`] - Whitelists channels for the word filter."
+    aliases: "`-ignoredchannels delete`, `-ignore remove`, `-ignored removed`, `-ignore delete`, `-ignored delete`"
+    command_forms_and_arguments: |
+      `-ignoredchannels remove <channels>`
+      **Channels** - Channels to whitelist. Accepts channel mentions and ID's. At least 1 channel has to be provided
+    example_usage: |
+      `-ignoredchannels remove #general`
+      `-ignoredchannels remove #general #memes`
+      `-ignoredchannels remove 687076782687387649`
+      `-ignoredchannels remove 687076782687387649 675107652426137617`
+    description: >
+      Whitelists channels for the word filter. The word filter will work properly for the channels in this command's arguments.
+
+  ignoredchannels list:
+    mod_command?: true
+    # overview: "•`-ignoredchannels list` [aliases: `-ignore list`, `-ignored list`] - Shows all of the ignored channels."
+    aliases: "`-ignore list`, `-ignored list`"
+    command_forms_and_arguments: |
+      `-ignoredchannels list`
+      No arguments.
+    description: >
+      Shows all of the channels that the word filter currently ignores.
+
+  ignoredchannels clear:
+    mod_command?: true
+    # overview: "•`-ignoredchannels clear` [aliases: `-ignore clear`, `-ignored clear`] - Clears the ignored channels list."
+    aliases: "`-ignore clear`, `-ignored clear`"
+    command_forms_and_arguments: |
+      `-ignoredchannels clear`
+      No arguments.
+    description: >
+      Removes all of the channels in the ignored channels list. This action is irreversible.
+
+bot-operations:
+  restart:
+    mod_command?: true
+    # overview: •`-restart` - Restarts the bot.
+    aliases: "`-r`"
+    command_forms_and_arguments: |
+      `-restart`
+      No arguments.
+    description: >
+      Restarts the bot. Usable by all levels of staff.
+
+# Cam commands
+cams:
+  cams:
+    mod_command?: true
+    # overview: •`-cams <number>` - Sets the cam requirement.
+    command_forms_and_arguments: |
+      `-cams <number>`
+      **Number** - The minimum number of cams needed
+    example_usage: "`-cams 5`"
+    description: >
+      Sets the minimum number of cams required for a message to be posted to <#841442818299396127>.
+
+  getcams:
+    mod_command?: true
+    # overview: •`-getcams` - Shows what the current cam minimum is set to.
+    command_forms_and_arguments: |
+      `-getcams`
+      No arguments.
+    description: >
+      Shows what the current cam minimum is set to.
+  
+  addchannels:
+    mod_command?: true
+    # overview: "•`-addchannels <channels>` [aliases: `-addchannel`] - Adds ignored channels."
+    aliases: "`-addchannel`"
+    command_forms_and_arguments: |
+      `-addchannels <channels>`
+      **Channels** - The channels to ignore. At least 1 has to be provided
+    example_usage: |
+      `-addchannels #general`
+      `-addchannels #general #memes`
+      `-addchannels 687076782687387649`
+      `-addchannels 687076782687387649 675107652426137617`
+    description: >
+      Makes it so messages that reach the minimum cam threshold in the provided channel or channels are ignored.
+
+  removechannels:
+    mod_command?: true
+    # overview: "•`-removechannels <channels>` [aliases: `-removechannel`] - Removes ignored channels."
+    aliases: "`-removechannel`"
+    command_forms_and_arguments: |
+      `-removechannel <channels>`
+      **Channels** - The channels to remove
+    example_usage: |
+      `-removechannels #general`
+      `-removechannels #general #memes`
+      `-removechannels 687076782687387649`
+      `-removechannels 687076782687387649 675107652426137617`
+    description: >
+      Removes a previously ignored channel from the ignored channels list.
+
+  showignoredchannels:
+    mod_command?: true
+    # overview: "•`-showignoredchannels` [aliases: `-showchannels`] - Show all ignored channels."
+    aliases: "`-showchannels`"
+    command_forms_and_arguments: |
+      `-showignoredchannels`
+      No arguments.
+    description: >
+      Shows all ignored channels.
+
+  clearignoredchannels:
+    mod_command?: true
+    # overview: "•`-clearignoredchannels` [aliases: `-clearchannels`] - Removes all channels from the ignored channels list."
+    aliases: "`-clearchannels`"
+    command_forms_and_arguments: |
+      `-clearignoredchannels`
+      No arguments.
+    description: >
+      Removes all channels from the ignored channels list.
+
+# Birthday commands
+birthdays:
+  birthdays:
+    mod_command?: true
+    # overview: "•`-birthdays` [aliases: `-bdays`] - List of options that mods have to change the birthday settings of users."
+    aliases: "`-bdays`"
+    command_forms_and_arguments: |
+      `-birthdays`
+      No arguments.
+    description: >
+      A master list containing all the options moderators have to change the birthdays settings of users on the server. Currently, those options
+      are: adding and removing users from the database, changing a user's birthday, changing whether or not a user will be mentioned in the birthday
+      channel on their birthday, and retrieving a user's profile, containing information such as their announcement setting and their birthday.
+
+  setbirthday:
+    mod_command?: false
+    # overview: "•`-setbirthday` or `-setbirthday <birthday>` [aliases: `-setbday`] - Allows you to set your birthday."
+    aliases: "`-setbday`"
+    command_forms_and_arguments: |
+      `-setbirthday`
+      No arguments.
+
+      `-setbirthday <date>`
+      **Birthday** - The date of your birthday. Acceptable date formats include: 10/5 (month/day), 10-5 (month-day), 28/6 (day/month), 28-6 (day-month), 
+      October 5, October 5th, 5 October, and 5th October
+    example_usage: "`-setbirthday 15/12`"
+    description: >
+      A command used to set your birthday. If it's used without an argument, you will be prompted to enter your birthday.
+
+
+      If you already have a birthday registered with Zym, you will be asked whether or not you want to change your current birthday to the one you
+      just supplied. If you don't have a registered birthday, you will be asked if you want your name to be included in an announcement sent to our
+      birthday channel on your birthday. You *will* be directly mentioned in the message. You will, however, be given the birthday role regardless
+      of your answer to the birthday announements question.
+
+  getbirthday:
+    mod_command?: false
+    # overview: "•`-getbirthday` or `-getbirthday <user>` [aliases: `-getbday`] - Retrieves either your birthday or someone else's birthday."
+    aliases: "`-getbday`"
+    command_forms_and_arguments: |
+      `-getbirthday`
+      No arguments.
+
+      `-getbirthday <user>`
+      **User** - The user whose birthday you want to retrieve. Accepts user ID's, usernames, and nicknames
+    example_usage: |
+      `-getbirthday 260600155630338048`
+      `-getbirthday Captain M#0854`
+      `-getbirthday Captain M`
+    description: >
+      A command used to get either your birthday or someone else's birthday. 
+
+  deletebirthday:
+    mod_command?: false
+    # overview: "•`-deletebirthday` [aliases: `-deletebday`, `-delbday`] - Deletes your birthday."
+    aliases: "`-deletebday`, `-delbday`"
+    command_forms_and_arguments: |
+      `-deletebirthday`
+      No arguments.
+    description: >
+      A command used to delete your birthday. When the command is first invoked, you will get a prompt asking you if you're sure about your
+      decision. Reacting with a checkmark will go ahead with the deletion; otherwise the command will be cancelled.
+
+  viewbirthdays:
+    mod_command?: false
+    # overview: "•`-viewbirthdays` [aliases: `-viewbdays`, `-view`] - Allows you to view the birthdays of a chosen month."
+    aliases: "`-viewbdays`, `-view`"
+    command_forms_and_arguments: |
+      `-viewbirthdays`
+      No arguments.
+    description: >
+      A command that allows you to view all the birthdays in a chosen month. Upon the command's invocation, you will be presented with a list of
+      months that you can check. Each month corresponds to a certain number, and you have to respond with that number in order to see all the
+      birthdays in that month. An example would be trying to see all the birthdays in May. You would have to respond with a '5' (without the
+      quotes) in order to see every birthday for May. If anything else is entered besides the options presented to you, an error message will
+      be thrown. You also have the option to cancel the command.
+
+  announcement:
+    mod_command?: false
+    # overview: "•`-announcement` [aliases: `-ann`] - Allows you to change whether or not your birthday gets announced in the birthday channel."
+    aliases: "`-ann`"
+    command_forms_and_arguments: |
+      `-announcement`
+      No arguments.
+    description: >
+      A command that allows you to change whether or not you'll be mentioned in our birthday channel on your birthday. Note that this is a direct
+      mention; you will get a notification for it.
+
+# Utility Commands
+utilities:
+  poll:
+    mod_command?: false
+    # overview: "•`-poll <question>` - Creates a \"yes, no, indifferent\" poll."
+    command_forms_and_arguments: |
+      `-poll <question>`
+      **Question** - The poll question
+    example_usage: "`-poll Add new elemental roles?`"
+    description: >
+      Creates a poll with "yes, no, indifferent" as the choices. They will be represented as numerical reacts on the message; 1
+      will correspond to "yes", 2 will correspond to "no" and 3 will correspond to "indifferent".
+
+  snowflake:
+    mod_command?: false
+    # overview: •`-convert <any valid ID obtained from Discord>` - Converts a Discord ID to a timestamp.
+    command_forms_and_arguments: |
+      `-snowflake <ID>`
+      **ID** - Any valid ID obtained from Discord
+    example_usage: "`-snowflake 841384715666849803`"
+    description: >
+      Converts a Discord ID to a timestamp. The timestamp indicates when the message was sent, when a server/channel/category/thread was created,
+      or when a user's account was created.
+
+  messageprint:
+    mod_command?: true
+    aliases: "`-msgprint`"
+    command_forms_and_arguments: |
+      __Use Specified Channel__
+      `-messageprint <channel> <message ID>`
+      **Channel** - The channel's ID or a mention
+      **Message ID** - The message's ID
+
+      __Use Current Channel__
+      `-messageprint <message ID>`
+      **Message ID** - The message's ID
+    example_usage: |
+      `-messageprint #bot-test 1011097230100418641`
+      `-messageprint 841401988666884117 1011097230100418641`
+      `-messageprint 1011097230100418641`
+    description: >
+      Displays the raw version of a message. Useful for copy-pasting messages that have user/role/channel mentions, emotes, etc.
+
+persistent-roles:
+  addpersistentroles:
+    mod_command?: true
+    aliases: "`-addpr`"
+    command_forms_and_arguments: |
+      `-addpersistentroles <roles>`
+      **Roles** - Role names or ID's
+    example_usage: |
+      `-addpersistentroles Dark`
+      `-addpersistentroles Sky Europe`
+      `-addpersistentroles 841516087123509249`
+      `-addpersistentroles 841515932316467250 842130553355632691`
+    description: >
+      Adds roles that can be persisted.
+
+  removepersistentroles:
+    mod_command?: true
+    aliases: "`-removepr`, `-deletepr`"
+    command_forms_and_arguments: |
+      `-removepersistentroles <roles>`
+      **Roles** - Role names or ID's
+    example_usage: |
+      `-removepersistentroles Dark`
+      `-removepersistentroles Sky Europe`
+      `-removepersistentroles 841516087123509249`
+      `-removepersistentroles 841515932316467250 842130553355632691`
+    description: >
+      Removes roles that can be persisted.
+
+  showpersistentroles:
+    mod_command?: false
+    aliases: "`-showpr`, `-listpr`, `-prlist`"
+    command_forms_and_arguments: |
+      __Show User's Current Persistent Roles__
+      `-showpersistentroles`
+      No arguments.
+
+      __Show Master List of Persistent Roles__
+      `-showpersistentroles master`
+      No arguments
+    description: >
+      Shows either a list of the user's roles that will be persisted or a master list of persistent roles.
+      
+
+# Information about fun commands and features
+fun:
+  say:
+    mod_command?: true
+    # overview: "•`-say <channel> <message>` [aliases: `-s`] - Makes the bot send a message to a specified channel."
+    aliases: "`-s`"
+    command_forms_and_arguments: |
+      `-say <channel> <message>`
+      **Channel** - The channel to send the message to. Accepts ID's, mentions, and names
+      **Message** - The message to be sent
+    example_usage: |
+      `-say 841442074673938442 Hey guys`
+      `-say #media Hey guys`
+      `-say media Hey guys`
+    description: >
+      A command that will send a message to a channel of your choosing through the bot. The command can be used with an attachment and the bot will 
+      send that attachment on your behalf; it can only send one, however.
+
+  hug:
+    mod_command?: false
+    # overview: •`-hug <user>` - Gives someone a hug.
+    command_forms_and_arguments: |
+      `-hug <user>`
+      **User** - The user you want to give a hug to. Accepts user ID's, user mentions, full usernames and nicknames
+    example_usage: |
+      `-hug 260600155630338048`
+      `-hug Captain M#0854`
+      `-hug Captain M`
+    description: >
+      Gives a warm, virtual hug to a user of your choosing.
+
+  jellytart:
+    mod_command?: false
+    # overview: "•`-jellytart <user>` [aliases: `-tart`] - Gives someone a jellytart."
+    aliases: "`-tart`"
+    command_forms_and_arguments: |
+      `-jellytart <user>`
+      **User** - The user you want to give a jellytart to. Accepts user ID's, user mentions, full usernames and nicknames
+    example_usage: |
+      `-jellytart 260600155630338048`
+      `-jellytart Captain M#0854`
+      `-jellytart Captain M`
+    description: >
+      Gives a delicious, virtual jellytart to a user of your choosing.
+
+  changesettings:
+    mod_command?: true
+    # overview: "•`-changesettings <the word 'hugs' or 'jellytarts'>` [aliases: `-changesetting`, `-cs`] - Allows mods to change the settings for fun commands."
+    aliases: "`-changesetting`, `-cs`"
+    command_forms_and_arguments: |
+      __Subcommands__
+      `-changesettings hugs`
+      No arguments.
+
+      `-changesettings jellytarts`
+      No arguments.
+    description: >
+      Allows mods to change how often a fun command can be used in a certain time frame as well as the time frame itself.
+      An example of this is changing the 'hug' command so that users can use it 3 times in 5 minutes.
+
+  getsettings:
+    mod_command?: true
+    # overview: "•`-getsettings <the word 'hugs' or 'jellytarts'>` [aliases: `-getsetting`, `-gs`] - Shows the current settings for the specified fun command."
+    aliases: "`-getsetting`, `-gs`"
+    command_forms_and_arguments: |
+      __Subcommands__
+      `-getsettings hugs`
+      No arguments.
+
+      `-getsettings jellytarts`
+      No arguments.
+    description: >
+      Shows the current settings for the specified fun command. The two primary pieces of information that will be shown
+      are the limit and the time span; the limit is how many times a command be used in a given time frame, and the time
+      span is that time frame.
+
+  resetsettings:
+    mod_command?: true
+    # overview: "•`-resetsettings <the word 'hugs' or 'jellytarts'>` [aliases: `-resetsetting`, `-reset`, `-rs`] - Changes all the current settings for a fun command to their default settings."
+    aliases: "`-resetsetting`, `-reset`, `-rs`"
+    command_forms_and_arguments: |
+      __Subcommands__
+      `-resetsettings hugs`
+      No arguments.
+
+      `-resetsettings jellytarts`
+      No arguments.
+    description: >
+      Reverts the current settings to their default ones. The default setting for all fun commands is as follows: 
+      a command can only be used once every 30 seconds.
